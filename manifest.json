@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "New Tab",
+    "version": "1.0.0",
+    "chrome_url_overrides": {
+        "newtab": "index.html"
+    },
+    "icons": {
+        "32": "icons/icon-34.png",
+        "128": "icons/icon-128.png"
+    },
+    "host_permissions": [
+        "https://*/*",
+        "http://*/*"
+    ]
+}
