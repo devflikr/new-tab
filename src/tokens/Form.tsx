@@ -1,25 +1,44 @@
 import React from 'react'
 
-function Form({ ...props }: React.DOMAttributes<HTMLFormElement>) {
+export type FormProps<T> = React.DOMAttributes<HTMLFormElement> & React.HTMLAttributes<HTMLFormElement> & {
+    onUpdate?: (values: T) => void;
+    onPost?: (values: T) => void;
+}
+function Form<T>({ onChange, onUpdate, onSubmit, onPost, ...props }: FormProps<T>) {
+    const parseValues = (elements: HTMLFormControlsCollection) => {
+        const blocks = [...elements] as HTMLInputElement[];
 
-    return (
-        <form onChange={(e) => {
-            const form = (e.target as HTMLFormElement).form as HTMLFormElement;
-            const blocks = [...form.elements] as HTMLInputElement[];
+        const values: { [key: string]: unknown } = {};
 
-            const values: { [key: string]: unknown } = {};
-
-            for (const block of blocks) {
-                const name = block.getAttribute("name");
-                if (name != null) {
-                    values[name] = block.value || block.files;
-                }
+        for (const block of blocks) {
+            const name = block.getAttribute("name");
+            if (name != null) {
+                values[name] = block.value || block.files;
             }
+        }
 
-            console.log(values);
-        }} {...props}>
+        return values;
+    }
+    return (
+        <form
+            onChange={(e) => {
+                const form = (e.target as HTMLFormElement).form as HTMLFormElement;
+                const values = parseValues(form.elements);
 
-        </form>
+                onChange?.(e);
+                onUpdate?.(values as T);
+            }}
+            onSubmit={(e) => {
+                e.preventDefault();
+
+                const form = e.target as HTMLFormElement;
+                const values = parseValues(form.elements);
+
+                onSubmit?.(e);
+                onPost?.(values as T);
+            }}
+            {...props}
+        />
     )
 }
 
