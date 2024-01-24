@@ -53,7 +53,9 @@ textarea {
     font-family: inherit;
     font-size: inherit;
     font-weight: inherit;
+    @apply focus:outline focus:outline-2 focus:outline-theme-hvr;
 }
+
 
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
@@ -85,8 +87,9 @@ svg {
 
 #root {
     display: flex;
-    min-width: 320px;
-    min-height: 100vh;
+    flex-direction: column;
+    width: 100dvw;
+    height: 100dvh;
 }
 
 
@@ -99,8 +102,8 @@ svg {
     background-attachment: scroll;
 }
 
-.button{
-    @apply w-8 h-8 transition-all flex all-center cursor-pointer text-xl hover:bg-theme-hvr;
+.round-button {
+    @apply w-8 h-8 transition-all flex all-center cursor-pointer rounded-full text-xl hover:bg-theme-hvr;
 }
 
 fieldset {
@@ -113,4 +116,13 @@ label {
 
 input {
     @apply w-full px-5 py-3 bg-theme-inp shadow rounded;
+}
+
+body {
+    background-image: url(/assets/wallpaper.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-clip: content-box;
+    background-attachment: scroll;
 }

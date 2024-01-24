@@ -3,7 +3,7 @@ import PopupContext from "./context";
 import { PopupContextValue } from "../../types/popup";
 
 
-function PopupProvider({ children }: { children: React.ReactNode }) {
+function PopupProvider({ children }: { children: React.ReactNode }): React.JSX.Element {
 
     const [popups, setPopups] = useState<PopupContextValue>({});
 
