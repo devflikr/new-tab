@@ -4,8 +4,11 @@
         "clsx",
         "crxjs",
         "Flikr",
+        "flikrui",
         "lucide",
         "newtab",
-        "tailwindcss"
+        "Signin",
+        "tailwindcss",
+        "tippyjs"
     ]
 }
