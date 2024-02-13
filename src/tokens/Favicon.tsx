@@ -10,7 +10,7 @@ function Favicon({ size = 16, src, url }: FaviconProps) {
 
     const [icon] = useAsync(() => src ? Promise.resolve(src) : favicon(url), [url]);
     return (
-        <span className="w-8 aspect-square placeholder" style={{ width: size, backgroundImage: icon && `url(${icon})` }} />
+        <span className="w-8 aspect-square placeholder" style={{ width: size, minWidth: size, backgroundImage: icon && `url(${icon})` }} />
     )
 }
 

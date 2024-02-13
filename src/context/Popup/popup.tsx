@@ -36,7 +36,7 @@ function Popup({ title, id, open, children, className, ...props }: PopupProps): 
                     exit={{ scale: 0.5 }}
                     transition={{ duration: 0.2 }}
                     className={cn(
-                        "bg-theme-bg w-80 max-w-full rounded-lg shadow-lg shadow-black/30 overflow-auto relative z-10",
+                        "bg-theme-slt w-80 max-w-full rounded-lg shadow-lg shadow-black/30 overflow-auto relative z-10",
                         className
                     )} {...props}>
                     <header className="p-3 flex flex-row-reverse justify-between items-center">

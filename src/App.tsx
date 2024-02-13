@@ -1,24 +1,32 @@
-import FavoriteLinks from "./components/FavoriteLinks"
-import FlikrUi from "./components/FlikrUi"
-import ToDoTasks from "./components/ToDoTasks"
-import Header from "./layout/Header"
 import React from "react"
-import { BrowserRouter } from "react-router-dom"
+import LayerBgInner from "./layers/BgInner"
+import LayerBgCover from "./layers/BgCover"
+import LayerDateTime from "./components/Time"
+import LayerWelcome from "./components/Welcome"
+import LayerCalendar from "./components/Calendar"
+import LayerQuickAccess from "./components/QuickAccess"
 
-function App():React.JSX.Element {
+function App(): React.JSX.Element {
     return (
-        <BrowserRouter>
-            <section className="flex flex-1">
-                <section className="flex flex-col">
-                    <Header />
-                    <ToDoTasks />
+        <section className="fixed inset-0 w-full h-full">
+            <LayerBgInner />
+            <LayerBgCover />
+
+            <section className="absolute inset-0 z-10 flex items-stretch gap-5">
+                <section className="inline-flex flex-col items-stretch p-5 gap-5">
+                    <LayerQuickAccess />
+                    <LayerCalendar />
                 </section>
-                <section className="flex-1"></section>
-                <section className="flex flex-col">
-                    <FlikrUi />
-                    <FavoriteLinks />
+                <section className="flex flex-col flex-1 items-stretch justify-between">
+                    <LayerDateTime />
+                    <LayerWelcome />
+                    <div className=""></div>
+                    <div className=""></div>
                 </section>
-            </section></BrowserRouter>
+                <section className="inline-flex flex-col items-stretch justify-between">
+                </section>
+            </section>
+        </section>
     )
 }
 

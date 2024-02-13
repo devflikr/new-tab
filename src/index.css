@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'SL Titans';
+    font-style: normal;
+    src: url(./assets/fonts/titans.ttf) format('truetype');
+}
+
 :root {
     color-scheme: dark;
     font-synthesis: none;
@@ -14,7 +20,7 @@ html {
 
 body {
     margin: 0;
-    font-family: "Work Sans", "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-family: "OutFit", "Work Sans", "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 16px;
@@ -43,7 +49,9 @@ html,
 :root,
 html,
 body {
-    @apply bg-theme-bg text-theme-clr;
+    background-color: #1b1b25;
+    @apply bg-theme-slt text-theme-clr;
+    color-scheme: dark;
 }
 
 input,
@@ -83,11 +91,33 @@ svg {
     .all-center {
         @apply justify-center items-center;
     }
+
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .boxed-shadow-red {
+        box-shadow: 0px 4px 50px 0px #D53933;
+    }
+
+    .boxed-shadow-purple {
+        box-shadow: 0px 4px 50px 0px #721CFF;
+    }
+
+    .text-shadow {
+        text-shadow: 0 4px 50px #721CFF;
+    }
+
+    .img-shadow-purple {
+        -webkit-filter: drop-shadow(0px 4px 4px #721CFF);
+        -moz-filter: drop-shadow(0px 4px 4px #721CFF);
+        -ms-filter: drop-shadow(0px 4px 4px #721CFF);
+        -o-filter: drop-shadow(0px 4px 4px #721CFF);
+        filter: drop-shadow(0px 4px 4px #721CFF);
+    }
 }
 
 #root {
-    display: flex;
-    flex-direction: column;
     width: 100dvw;
     height: 100dvh;
 }
@@ -115,14 +145,58 @@ label {
 }
 
 input {
-    @apply w-full px-5 py-3 bg-theme-inp shadow rounded;
+    @apply w-full px-5 py-3 bg-theme-blk shadow rounded;
 }
 
 body {
-    background-image: url(/assets/wallpaper.jpg);
+    background-image: linear-gradient(45deg, #08080c, #1a1a29);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-clip: content-box;
     background-attachment: scroll;
+}
+
+.clock-hand {
+    position: absolute;
+    width: 2px;
+    border-radius: 9999px;
+    height: 32px;
+    transform-origin: center bottom;
+    translate: -50% 0;
+    top: 0;
+    left: 32px;
+    rotate: calc(1deg * var(--r));
+}
+
+.clock-hand.__h {
+    background-color: #721CFF;
+    top: 12px;
+    width: 3px;
+    height: 20px;
+}
+
+.clock-hand.__m {
+    background-color: #71F10D;
+    top: 8px;
+    width: 2px;
+    height: 24px;
+}
+
+.clock-hand.__s {
+    background-color: #D53933;
+    top: 4px;
+    width: 1px;
+    height: 28px;
+}
+
+.clock-hand__d {
+    background-color: #721CFF;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 4px;
+    height: 4px;
+    border-radius: 9999px;
+    position: absolute;
 }

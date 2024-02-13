@@ -3,9 +3,9 @@ import { useAsync } from "react-unique-hooks";
 
 export type StorageSense<T> = [id: number, value: T];
 
-function useStorage<T>(key: string, initialValue: StorageSense<T>): [value: StorageSense<T>, update: (data: T) => void] {
+function useStorage<T>(key: string, initialValue: StorageSense<T>): [value: StorageSense<T>, add: (data: T) => void, update: (data: T) => void, loading: boolean] {
 
-    const [data] = useAsync(() => chrome.storage.sync.get(key), [key]);
+    const [data, loading] = useAsync(() => chrome.storage.sync.get(key), [key]);
 
     const [value, setValue] = useState<StorageSense<T>>(initialValue);
 
@@ -18,6 +18,10 @@ function useStorage<T>(key: string, initialValue: StorageSense<T>): [value: Stor
     }, [data, key]);
 
     const updateStorage = (data: T) => {
+        chrome.storage.sync.set({ [key]: [value[0], data] as StorageSense<T> });
+    }
+
+    const addToStorage = (data: T) => {
         chrome.storage.sync.set({ [key]: [value[0] + 1, data] as StorageSense<T> });
     }
 
@@ -34,7 +38,7 @@ function useStorage<T>(key: string, initialValue: StorageSense<T>): [value: Stor
         }
     }, [changeListener]);
 
-    return [value, updateStorage];
+    return [value, addToStorage, updateStorage, loading];
 }
 
 export default useStorage

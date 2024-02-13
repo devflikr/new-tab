@@ -12,7 +12,8 @@ async function favicon(url: string) {
     return new Promise<string>((resolve) => {
         try {
             const plainUrl = new URL(url);
-            axios.get<FaviconResponse>(`https://favicone.com/${plainUrl.hostname}?json`)
+            return resolve(`https://icon.horse/icon/${plainUrl.hostname}`);
+            axios.get<FaviconResponse>(`http://www.google.com/s2/favicons?domain=${plainUrl.hostname}&sz=256?json`)
                 .then(({ data }) => {
                     if (data.hasIcon) {
                         resolve(data.icon);
